@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026「中華單車天使」土庫囡仔雙輪跨海壯遊誌</title>
+  <style>
+    :root {
+      --primary: #2e7d32;
+      --primary-dark: #1b5e20;
+      --accent: #0288d1;
+      --bg-color: #f4f6f8;
+      --card-bg: #ffffff;
+      --text-main: #2c3e50;
+      --text-muted: #607d8b;
+      --border-radius: 14px;
+      --shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+      --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    /* 頂部導覽列 */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #e2e8f0;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    }
+
+    .navbar .logo {
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 12px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-main);
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 20px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      background-color: #e8f5e9;
+      color: var(--primary);
+    }
+
+    /* Hero Banner */
+    .hero {
+      background: linear-gradient(135deg, #154d1a 0%, #2e7d32 60%, #0288d1 100%);
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+    }
+
+    .hero h1 {
+      font-size: 2.3rem;
+      font-weight: 800;
+      margin-bottom: 14px;
+      line-height: 1.3;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      opacity: 0.95;
+      max-width: 720px;
+      margin: 0 auto;
+      font-weight: 300;
+    }
+
+    /* 主要內容區 */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    /* 區塊標題 */
+    .section-header {
+      margin-bottom: 28px;
+      border-left: 5px solid var(--primary);
+      padding-left: 16px;
+    }
+
+    .section-header.taiwan {
+      border-left-color: var(--accent);
+    }
+
+    .section-header.reels {
+      border-left-color: #e91e63;
+    }
+
+    .section-header h2 {
+      font-size: 1.6rem;
+      color: var(--text-main);
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-top: 4px;
+    }
+
+    /* 網格排列 */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 24px;
+      align-items: start;
+      margin-bottom: 50px;
+    }
+
+    /* 卡片設計 */
+    .card {
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      transition: transform 0.25 ease, box-shadow 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    /* 卡片中繼資訊 */
+    .card-meta {
+      width: 100%;
+      margin-bottom: 14px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      border-radius: 12px;
+      background-color: #e8f5e9;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .badge.badge-taiwan {
+      background-color: #e1f5fe;
+      color: var(--accent);
+    }
+
+    .badge.badge-reel {
+      background-color: #fce4ec;
+      color: #c2185b;
+    }
+
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.4;
+    }
+
+    .card-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* 嵌入容器 */
+    .iframe-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    .iframe-container iframe {
+      width: 100%;
+      max-width: 500px;
+      border: none;
+    }
+
+    /* 頁尾 */
+    footer {
+      text-align: center;
+      padding: 35px 20px;
+      background-color: #ffffff;
+      border-top: 1px solid #e2e8f0;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .navbar { flex-direction: column; gap: 12px; }
+      .grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 1.75rem; }
+      .hero p { font-size: 0.98rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 導覽列 -->
+  <nav class="navbar">
+    <div class="logo">🚴‍♂️ 中華單車天使・騎行紀錄牆</div>
+    <ul class="nav-links">
+      <li><a href="#mainland">大陸段騎行</a></li>
+      <li><a href="#taiwan">台灣出發</a></li>
+      <li><a href="#reels">影音紀錄</a></li>
+    </ul>
+  </nav>
+
+  <!-- Banner -->
+  <header class="hero">
+    <span class="hero-badge">2026 暑期單車壯遊 7/12 – 7/22</span>
+    <h1>中華單車天使・土庫囡仔雙輪跨海壯遊誌</h1>
+    <p>8位來自雲林土庫的囡仔橫跨台海，展開為期11天的長征！用雙輪與汗水在上海、杭州、蘇州與湖州之間，刻劃下青春最堅毅的騎行印記。</p>
+  </header>
+
+  <main class="container">
+
+    <!-- 第一區塊：大陸段騎行紀錄 -->
+    <section id="mainland">
+      <div class="section-header">
+        <h2>🚴‍♂️ 大陸段 11 天長征紀錄（上海 ‧ 杭州 ‧ 蘇州 ‧ 湖州）</h2>
+        <p>記錄 8 位土庫囡仔縱橫華東四座名城、克服體能極限與團隊協作的精彩貼文</p>
+      </div>
+
+      <div class="grid">
+
+        <div class="card">
+          <div class="card-meta">
+            <span class="badge">上海首站 ‧ 騎行啟航</span>
+            <div class="card-title">踏上華東大地！土庫囡仔開啟雙輪挑戰</div>
+            <div class="card-desc">7/12 抵達上海，整備車輛與誓師，邁出11天騎行長征的第一步。</div>
+          </div>
+          <div class="iframe-container">
+            <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid0opu3XZxhVtDvZTavtAoMP9aFRv9e1zjNuqoCxARF79Yb6dXnHWonhHDM4hZwLqvtl%26id%3D100057555523595&show_text=true&width=500" height="970" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-meta">
+            <span class="badge">杭州西湖 ‧ 湖光山色</span>
+            <div class="card-title">雙輪穿梭杭城！西湖畔的騎行英姿</div>
+            <div class="card-desc">馳騁於杭州綠意與古韻之間，用腳踏板感受詩意江南的美景。</div>
+          </div>
+          <div class="iframe-container">
+            <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid031W7FPrXu3g4uSV81vXqPVMzBZuBYP1WwgyaQ7EUwkUf1vWLXMTJ2MKtLFVimUTZUl%26id%3D100057555523595&show_text=true&width=500" height="964" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-meta">
+            <span class="badge">蘇州水鄉 ‧ 古城風情</span>
+            <div class="card-title">穿越小橋流水！蘇州歷史與現代騎行</div>
+            <div class="card-desc">孩子們踏著單車走過蘇州巷弄與水鄉古鎮，體驗豐富的在地文化。</div>
+          </div>
+          <div class="iframe-container">
+            <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid0eoTGJwsoz2uiH9SW33StheHs6kNCUZTsMfiVGXFV7B5XfLMAJcv5Harjg6waxJotl%26id%3D100057555523595&show_text=true&width=500" height="881" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-meta">
+            <span class="badge">湖州太湖 ‧ 毅力挑戰</span>
+            <div class="card-title">太湖之濱風馳電掣！考驗意志力的長距離騎行</div>
+            <div class="card-desc">面對炎陽與長途考驗，8位土庫囡仔展現不服輸的堅毅精神。</div>
+          </div>
+          <div class="iframe-container">
+            <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid0yH8dmj6E5G9n74Gd8xDe6vQjPg3Jmo5Bw1efS8D8fG9fVbv2fwfSdbY2f4ZierzKl%26id%3D100057555523595&show_text=true&width=500" height="866" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-meta">
+            <span class="badge">團隊默契 ‧ 圓滿結業</span>
+            <div class="card-title">11天長征總結！見證孩子們的成長與蛻變</div>
+            <div class="card-desc">從最初的生疏到緊密相連，中華單車天使在大陸段畫下完美句點。</div>
+          </div>
+          <div class="iframe-container">
+            <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid0GB5NaisDc8hVmQ6nYTMf2AaVu1vCysx2tMKSNgrHDJcQ3T236TZucb2d2DagTrcVl%26id%3D100057555523595&show_text=true&width=500" height="860" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-meta">
+            <span class="badge">兩岸交流 ‧ 友情連結</span>
+            <div class="card-title">用單車搭起友誼橋樑！文化交流點滴</div>
+            <div class="card-desc">以騎行會友，在沿途交流中收穫珍貴的情誼與視野。</div>
+          </div>
+          <div class="iframe-container">
+            <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid02YwNYncjTcDLdi7SWFAn7xVUfcRy5vYyUfA7hjP3jXEpPZkkuPHna5kQ812ABSjZfl%26id%3D100057555523595&show_text=true&width=500" height="804" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-meta">
+            <span class="badge">每日快報</span>
+            <div class="card-title">今日騎行公里數突破！孩子們辛苦了</div>
+          </div>
+          <div class="iframe-container">
+            <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid02EDAjQt923cszusG4H92NpZXKNKpbdzHmejv6Y5TQW1DmaCbsQSyjeEkCMmwiJLy1l%26id%3D100057555523595&show_text=true&width=500" height="374" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-meta">
+            <span class="badge">花絮動態</span>
+            <div class="card-title">騎行補給站！土庫囡仔的歡笑時刻</div>
+          </div>
+          <div class="iframe-container">
+            <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid0pizT8EyCLALAXx8bqxXMnfatD4dHSMK1G6QvT4yi38QjE3kWYhobGqUVKqsKXDTDl%26id%3D100057555523595&show_text=true&width=500" height="250" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-meta">
+            <span class="badge">天使精神</span>
+            <div class="card-title">互相扶持、破風前行！團隊的力量</div>
+          </div>
+          <div class="iframe-container">
+            <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid02zrDHZXe6uQ6XRUuTPdiaVyfpkHvwMAZNqCkCF6CXKS7DANQVLCCSf7wFCHydVKCml%26id%3D100057555523595&show_text=true&width=500" height="250" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-meta">
+            <span class="badge">騎行日誌</span>
+            <div class="card-title">雙輪下的足跡，記錄每一哩路的感動</div>
+          </div>
+          <div class="iframe-container">
+            <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid03VsdYMzRpgSvkxahTEzFYNFVx2zBdEdgBUXkGNMA4zmvwG8Pe2wf92rJLLfMpu2Ll%26id%3D100057555523595&show_text=true&width=500" height="250" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-meta">
+            <span class="badge">感恩致謝</span>
+            <div class="card-title">感謝所有為單車天使加油打氣的夥伴</div>
+          </div>
+          <div class="iframe-container">
+            <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid09MQbFDpeHR6JFNjsBPkDkADG17cZ2vpGye2zy2PFCxcxygsktu9HgsL9TpWEDPs3l%26id%3D100057555523595&show_text=true&width=500" height="250" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 第二區塊：台灣出發專區 -->
+    <section id="taiwan">
+      <div class="section-header taiwan">
+        <h2>🇹🇼 台灣出發 ‧ 行前整備與授旗出征</h2>
+        <p>土庫囡仔從雲林出發、授旗與集訓，準備跨越台海挑戰雙輪壯遊的心路歷程</p>
+      </div>
+
+      <div class="grid">
+
+        <div class="card">
+          <div class="card-meta">
+            <span class="badge badge-taiwan">授旗誓師</span>
+            <div class="card-title">台灣出發！土庫囡仔授旗儀式與祝福</div>
+            <div class="card-desc">帶著滿滿的家鄉祝福與期待，準備飛躍台海展開11天長征！</div>
+          </div>
+          <div class="iframe-container">
+            <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid0jJMdq7wProLRzqAGLLxNiVGYQp4JPYsoiHFhdUQJXvMcsqkGhKKNmsfkj8v3ph4Gl%26id%3D100057555523595&show_text=true&width=500" height="529" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-meta">
+            <span class="badge badge-taiwan">行前集訓</span>
+            <div class="card-title">汗水鑄就強健體能！行前騎乘與隊形訓練</div>
+            <div class="card-desc">出發前的嚴格訓練，培養了孩子們的強健體魄與團隊默契。</div>
+          </div>
+          <div class="iframe-container">
+            <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid0KFR5GSi5o6cvi5iG8q1A31n2ja9Sbnp72A2wp1xaQFJfwNHLnHxexmtVW8dvxP8Gl%26id%3D100057555523595&show_text=true&width=500" height="532" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 第三區塊：影音紀錄 (Reels) -->
+    <section id="reels">
+      <div class="section-header reels">
+        <h2>🎬 精彩影音 ‧ 動態騎影側拍</h2>
+        <p>透過鏡頭直擊中華單車天使一路上的汗水、笑容與飆風英姿</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <div class="card-meta">
+            <span class="badge badge-reel">FB Reels 短影音</span>
+            <div class="card-title">【隨手拍】土庫囡仔大陸段騎行精華影片</div>
+            <div class="card-desc">用影像記錄孩子們在旅途中的感動與歡笑瞬間。</div>
+          </div>
+          <div class="iframe-container">
+            <iframe src="https://www.facebook.com/plugins/video.php?height=317&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F3468116780014851%2F&show_text=false&width=560&t=0" height="317" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2026 中華單車天使 ｜ 8位土庫囡仔雙輪跨海壯遊誌</p>
+  </footer>
+
+</body>
+</html>
